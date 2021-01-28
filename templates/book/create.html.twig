@@ -1,22 +1,41 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
+
 {% block title %}Create new Book{% endblock %}
 
 {% block body %}
 
-    <h1> Create new Book ✅</h1>
+    <header>
+    <a class="header" href="{{path('book_index')}}"> Books </a> |
+    <a class="header" href="{{path('author_create')}}"> Create new author </a>
+    </header>
+
+    <h1> Create new Book </h1>
 
     <form action="{{path('book_store')}}" method="POST">
-        Title: <input type="text" name="book_title">
-        Pages: <input type="text" name="book_pages">
-        ISBN: <input type="text" name="book_isbn">
-        About: <textarea name="book_about"></textarea>
-        <select name="book_author_id">
-        {% for author in authors %}
-        <option value="{{author.id}}">{{author.name}} {{author.surname}} </option>
-        {% endfor %}
-        </select>
-        <button type="submit"> Add new Book </button>
+    <div class="create_book container">    
+            <p class="title"> Title: </p>
+            <input type="text" name="book_title">
+            <p class="pages"> Pages: </p>
+            <input type="text" name="book_pages">
+            <p class="isbn">ISBN: </p>
+            <input type="text" name="book_isbn">
+            <p class="about">About: </p> 
+            {# <textarea name="book_about"></textarea> #}
+            {# <div class="form"> #}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            {# </div> #}
+            <select name="book_author_id">
+            {% for author in authors %}
+            <option value="{{author.id}}">{{author.name}} {{author.surname}} </option>
+            {% endfor %}
+            </select>
+            <br>
+            <button type="submit"> Add new Book </button>
+        </div>
     </form>
 
 {% endblock %}

@@ -1,21 +1,35 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
+
 
 {% block title %}Authors List{% endblock %}
 
 {% block body %}
 
-    <h1>Authors in Library ✅</h1>
+    <header>
+    <a class="header" href="{{path('book_index')}}"> Books </a> |
+    <a class="header" href="{{path('author_create')}}"> Create new author </a>
+    </header>
 
-    List:
-    <ul>
+    <h1>Authors in Library </h1>
+
+    <h2>List </h2>
+    <div class="grid-container">
     {% for author in authors %}
-        <li>
-        {{author.name}} {{author.surname}} 
-        <a href="{{path('author_edit', {id: author.id})}}">EDIT</a> 
+        <div class="authors_border">
+        <div class="authors">{{author.name}} {{author.surname}} </div> 
         <form action="{{path('author_delete', {id: author.id})}}" method="POST">
+        <div class="parasytos_knygos"> <span>Parasytos knygos: </span> <br> {% for book in author.books %}
+            {{book.title}}
+        {% endfor %} 
+        <br>
+        </div>
+        <br>
+        <br>
+        <a class="edit" href="{{path('author_edit', {id: author.id})}}">EDIT</a> 
         <button type="submit">DELETE</button>
         </form>
-        </li>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

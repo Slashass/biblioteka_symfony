@@ -1,15 +1,27 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
 
 {% block title %}Create new Author{% endblock %}
 
 {% block body %}
 
-    <h1> Create new Author ✅</h1>
+    <header>
+    <a class="header" href="{{path('book_index')}}"> Books </a> |
+    <a class="header" href="{{path('author_create')}}"> Create new author </a>
+    </header>
+
+    <h1> Create new Author </h1>
 
     <form action="{{path('author_store')}}" method="POST">
-        Name: <input type="text" name="author_name">
-        Surname: <input type="text" name="author_surname">
+    <div class="create_author">
+        <p class="name">Name </p>  
+        <input type="text" name="author_name">
+        <br>
+        <p class="surname">Surname </p> 
+        <input type="text" name="author_surname"> 
+        <br>
         <button type="submit"> Add new Author </button>
+    </div>
     </form>
 
 {% endblock %}

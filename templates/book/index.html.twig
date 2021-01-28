@@ -1,20 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
+
+{# {% block header %}
+<a href="{{path('book_create')}}"> Create new book </a>
+<a href="{{path('book_update')}}"> Update a book </a>
+{% endblock %} #}
+
+{% block title %}Books List{% endblock %}
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <header>
+    <a class="header" href="{{path('book_create')}}"> Create new book </a> |
+    <a class="header" href="{{path('author_index')}}"> Authors </a>
+    </header>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/biblioteka/src/Controller/BookController.php'|file_link(0) }}">src/Controller/BookController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/biblioteka/templates/book/index.html.twig'|file_link(0) }}">templates/book/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <h1>Books in Library </h1>
+
+    <h2>Books List </h2>
+    <br>
+    <div class="grid-container">
+    {% for book in books %}
+    <div class="books_border">
+        <br>
+        <img src="{{asset('assets/foto/images.jpg')}}" alt="book">
+        <p><span>Knyga:</span> {{book.title}} </p>
+        <p><span>Parase:</span>  {{book.author.name}} {{book.author.surname}}</p>
+        <p><span>About:</span> {{book.about}} </p>
+        <form action="{{path('book_delete', {id: book.id})}}" method="POST">
+        <a class="edit" href="{{path('book_edit', {id: book.id})}}">EDIT</a> 
+        <button type="submit">DELETE</button>
+        </form>
+    </div>    
+    {% endfor %}
+    </div>
 {% endblock %}

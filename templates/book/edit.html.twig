@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
+
+{% block title %}Edit new Book{% endblock %}
+
+{% block body %}
+
+    <header>
+    <a class="header" href="{{path('book_index')}}"> Books </a> |
+    <a class="header" href="{{path('author_create')}}"> Create new author </a>
+    </header>
+
+    <h1> Edit new Book </h1>
+
+    <form action="{{path('book_update', {id: book.id})}}" method="POST">
+        <div class="edit_book">
+            <p class="title"> Title: </p>
+            <input type="text" name="book_title" value="{{book.title}}">
+            <p class="pages">Pages: </p>
+            <input type="text" name="book_pages" value="{{book.pages}}">
+            <p class="isbn">ISBN: </p>
+            <input type="text" name="book_isbn" value="{{book.isbn}}">
+            <p class="about">About: </p>
+            {# <div class="form"> #}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            {# </div> #}
+            <br>
+            <select name="book_author">
+            {% for author in authors %}
+            {# ife nurodom, kad selekte pasirinktas authorius, kuriam priklauso ta knyga
+                nepamirst, kad book.authorId ! ne book.author_id ! 
+            #}
+            <option value="{{author.id}}" {% if author.id == book.authorId %} selected {% endif %}>
+            {{author.name}} {{author.surname}} 
+            </option>
+
+            {% endfor %}
+            </select>
+            <br>
+            <button type="submit"> Edit Book </button>
+        </div>
+    </form>
+
+{% endblock %}

@@ -1,15 +1,26 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
 
 {% block title %}Edit Author{% endblock %}
 
 {% block body %}
 
-    <h1> Edit Author ✅</h1>
+    <header>
+    <a class="header" href="{{path('book_index')}}"> Books </a> |
+    <a class="header" href="{{path('author_create')}}"> Create new author </a>
+    </header>
+
+    <h1> Edit Author </h1>
 
     <form action="{{path('author_update', {id: author.id})}}" method="POST">
-        Name: <input type="text" name="author_name" value="{{author.name}}">
-        Surname: <input type="text" name="author_surname" value="{{author.surname}}">
+    <div class="edit_author">
+        <p class="name">Name </p> 
+        <input type="text" name="author_name" value="{{author.name}}">
+        <p class="surname"> Surname </p>
+        <input type="text" name="author_surname" value="{{author.surname}}">
+        <br>
         <button type="submit"> Edit Author </button>
+    </div>
     </form>
 
 {% endblock %}

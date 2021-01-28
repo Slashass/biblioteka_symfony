@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\Author;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -102,6 +103,10 @@ class AuthorController extends AbstractController
         $author = $this->getDoctrine()
         ->getRepository(Author::class)
         ->find($id);
+
+        if ($author->getBooks()->count() > 0) {
+            return new Response('Trinti negalima nes turi knygu');
+        }
 
         // doctrine tarpininkas tarp db ir entity
         // metodu remove paduoda autoriu istrinam
