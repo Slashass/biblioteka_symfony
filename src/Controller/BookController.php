@@ -60,17 +60,19 @@ class BookController extends AbstractController
             ->getRepository(Author::class)
             ->findAll();
 
-            $form = $this->createFormBuilder()
-            ->add('content', CKEditorType::class, [
-                'config' => [
-                    'config' => 'main_configs',
-                ],]
-                )
-            ->getForm();    
+        $form = $this->createFormBuilder()
+        ->add('About', CKEditorType::class, [
+            'config' => [
+                'config' => 'main_configs',
+            ],]
+            )
+        ->getForm();
 
         return $this->render('book/create.html.twig', [
             'authors' => $authors,
             'form' => $form->createView(),
+            'autoload' => true,
+            'async'=> true,
         ]);
     }
      /**
@@ -107,7 +109,7 @@ class BookController extends AbstractController
     /**
      * @Route("/book/edit/{id}", name="book_edit", methods={"GET"})
      */
-    // Edit --------------------------------------------------------------------
+    // EDIT --------------------------------------------------------------------
     public function edit(int $id): Response
     {
         // ieskom to autoriaus kurio id yra perduotas
@@ -120,7 +122,7 @@ class BookController extends AbstractController
         ->findAll();
 
         $form = $this->createFormBuilder()
-        ->add('content', CKEditorType::class, [
+        ->add('About', CKEditorType::class, [
             'config' => [
                 'config' => 'main_configs',
             ],]
@@ -138,7 +140,7 @@ class BookController extends AbstractController
     /**
      * @Route("/book/update/{id}", name="book_update", methods={"POST"})
      */
-    //  Update method-----------------------------------------------------------
+    //  UPDATE method-----------------------------------------------------------
     public function update(Request $r, $id): Response
     {
         // imam autoriu pagal sena id

@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> 
+{% endblock %}
 
 {% block title %}Edit new Book{% endblock %}
 
@@ -21,12 +24,11 @@
             <input type="text" name="book_pages" value="{{book.pages}}">
             <p class="isbn">ISBN: </p>
             <input type="text" name="book_isbn" value="{{book.isbn}}">
-            <p class="about">About: </p>
-            {# <div class="form"> #}
+            <div name="book_about" class="form">
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
                 {{ form_end(form) }}
-            {# </div> #}
+            </div>
             <br>
             <select name="book_author">
             {% for author in authors %}

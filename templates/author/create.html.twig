@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> 
+{% endblock %}
 
 {% block title %}Create new Author{% endblock %}
 
@@ -7,7 +11,7 @@
 
     <header>
     <a class="header" href="{{path('book_index')}}"> Books </a> |
-    <a class="header" href="{{path('author_create')}}"> Create new author </a>
+    <a class="header" href="{{path('book_create')}}"> Create new book </a>
     </header>
 
     <h1> Create new Author </h1>

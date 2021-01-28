@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> 
+{% endblock %}
 
 {# {% block header %}
 <a href="{{path('book_create')}}"> Create new book </a>
@@ -26,9 +29,9 @@
     <div class="books_border">
         <br>
         <img src="{{asset('assets/foto/images.jpg')}}" alt="book">
-        <p><span>Knyga:</span> {{book.title}} </p>
-        <p><span>Parase:</span>  {{book.author.name}} {{book.author.surname}}</p>
-        <p><span>About:</span> {{book.about}} </p>
+        <p class="book"><span>Book:</span> {{book.title}} </p>
+        <p class="author"><span>Author:</span>  {{book.author.name}} {{book.author.surname}}</p>
+        <p class="about2"><span>About:</span> {{book.about}} </p>
         <form action="{{path('book_delete', {id: book.id})}}" method="POST">
         <a class="edit" href="{{path('book_edit', {id: book.id})}}">EDIT</a> 
         <button type="submit">DELETE</button>

@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> 
+{% endblock %}
 
 {% block title %}Create new Book{% endblock %}
 
@@ -21,18 +24,17 @@
             <input type="text" name="book_pages">
             <p class="isbn">ISBN: </p>
             <input type="text" name="book_isbn">
-            <p class="about">About: </p> 
-            {# <textarea name="book_about"></textarea> #}
-            {# <div class="form"> #}
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
-            {# </div> #}
+            <p class="about">Author </p>
             <select name="book_author_id">
             {% for author in authors %}
             <option value="{{author.id}}">{{author.name}} {{author.surname}} </option>
             {% endfor %}
             </select>
+            <div name="book_about" class="form">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
             <br>
             <button type="submit"> Add new Book </button>
         </div>
