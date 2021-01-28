@@ -3,6 +3,7 @@ body {
     text-align: center;
     background-color: lightgray;
     font-family: "Sofia", sans-serif;
+    word-wrap: break-word;
 }
 
 header {
@@ -29,6 +30,7 @@ h1 {
 .edit {
     text-decoration: none;
     padding: 20px;
+    font-weight: bold;
 
 }
 .edit:hover {
@@ -90,6 +92,8 @@ button {
     margin-top: 15px;
     background-color: lightblue;
     border-radius: 20px;
+    position:sticky;
+    font-weight: bold;
 }
 
 button:hover{
@@ -99,6 +103,7 @@ button:hover{
 
 .grid-container {
     display: grid;
+    grid: flex;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 30px 30px;
@@ -111,12 +116,12 @@ button:hover{
   }
 
 img {
-    width: 70px;
-    height: 70px;
+    height: 200px;
+    width: 150px;
     float: left;
 }
 
-@media only screen and (max-width: 1050px) {
+@media only screen and (max-width: 1700px) {
     .grid-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -128,7 +133,33 @@ img {
     }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 1200px) {
+    .name, .surname, .pages, .isbn, .title, .about {
+        font-size: 20px;
+        font-weight: bold;
+        color: lightslategray;
+    }
+    .book, .author, .about2 {
+        font-size: 15px;
+    }
+    span{ 
+        color: lightcoral;
+        font-size: 20px;
+    }
+    .edit {
+        text-decoration: none;
+        padding: 20px;
+    }
+    button {
+        padding: 5px;
+    }
+    img {
+        height: 150px;
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
     .grid-container {
         display: grid;
         grid-template-columns: 1fr;
@@ -138,4 +169,25 @@ img {
           "."
           ".";
       }
+      .authors {
+        font-weight: bold;
+        font-size: 30px;
+    }
+    .create_book, .create_author {
+        width: 80%;
+    }
+    img {
+        height: 200px;
+        width: 150px;
+        padding: 10px;
+    }
+    .book, .author {
+        display: table;
+        margin-right: 10px;
+    }
+    /* .about2 {
+        display: inline-block;
+        word-break: break-all;
+        float: left;
+    } */
 }

@@ -32,6 +32,7 @@
         <p class="book"><span>Book:</span> {{book.title}} </p>
         <p class="author"><span>Author:</span>  {{book.author.name}} {{book.author.surname}}</p>
         <p class="about2"><span>About:</span> {{book.about}} </p>
+        <br>
         <form action="{{path('book_delete', {id: book.id})}}" method="POST">
         <a class="edit" href="{{path('book_edit', {id: book.id})}}">EDIT</a> 
         <button type="submit">DELETE</button>
