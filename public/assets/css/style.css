@@ -10,6 +10,7 @@ body {
     word-wrap: break-word;
 }
 
+
 header {
     display: inline-block;
     width: 100%;
@@ -195,7 +196,7 @@ img {
         font-weight: bold;
         font-size: 30px;
     }
-    .create_book, .create_author {
+    .create_book, .create_author, .edit_author {
         width: 80%;
     }
     img {

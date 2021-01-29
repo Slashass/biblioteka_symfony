@@ -64,6 +64,8 @@ class BookController extends AbstractController
         ->add('About', CKEditorType::class, [
             'config' => [
                 'config' => 'main_configs',
+                'cloudServices_tokenUrl' => 'https://example.com/cs-token-endpoint',
+                'cloudServices_uploadUrl' => 'https://your-organization-id.cke-cs.com/easyimage/upload/',
             ],]
             )
         ->getForm();
@@ -83,13 +85,12 @@ class BookController extends AbstractController
     {
 
         // id patrikrinimas
-        // dd($r->request->get('book_author_id'));
+        // dd($r->request->get('book_about'));
 
         $author = $this->getDoctrine()
         ->getRepository(Author::class)
         ->find($r->request->get('book_author_id'));
-
-        // creating new author 
+ 
         $book = new Book;
         $book
             ->setTitle($r->request->get('book_title'))
