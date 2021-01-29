@@ -14,7 +14,7 @@ This repository is for educational porpuses only.
 
 Only registrated and sign-in users can access the program.
 
-** This site is not published **
+**This site is not published**
 
 <img width="550" alt="Capture" src="public/assets/foto/scrshot.png">
 
