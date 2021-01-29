@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use App\Entity\Author;
 use App\Entity\Book;
 
@@ -31,6 +32,20 @@ class BookController extends AbstractController
             
         ]);
     }
+     /**
+     * @Route("/book", name="book_index")
+     */
+    // FILTER --------------------------------------------------------------------
+    // public function configureFilters(Filters $filters): Filters
+    // {
+    //     return $filters
+    //         // ->add('title')
+    //         // ->add('price')
+    //         // ->add('published')
+    //         ->add($r->request->get('book_author_id'))
+    //         ->add($r->request->get('author_id'))
+    //     ;
+    // }
     /**
      * @Route("ckeditor", name="ckeditor")
      */
