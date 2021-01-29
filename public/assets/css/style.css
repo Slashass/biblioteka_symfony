@@ -17,6 +17,24 @@ h1 {
     color: lightslategray;
 }
 
+
+.login_index, .register_index {
+    display: inline-grid;
+    width: 300px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px;
+}
+/* .form {
+    width: min-content;
+    justify-self: center;
+} */
+
+#registration_form_plainPassword, #registration_form_email {
+    min-width: -webkit-fill-available;
+}
+
 .header {
     text-decoration: none;
     white-space: break-spaces;
@@ -185,9 +203,16 @@ img {
         display: table;
         margin-right: 10px;
     }
-    /* .about2 {
-        display: inline-block;
-        word-break: break-all;
-        float: left;
-    } */
+    .login_index, .register_index {
+        width:  70%;
+        height: 70%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .login_index, .register_index {
+        width:  98%;
+        height: 100%;
+    }
+
 }
