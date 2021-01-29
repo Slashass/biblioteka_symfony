@@ -2,12 +2,13 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<link rel="stylesheet" href="{{ asset('assets/css/extra.css') }}"> 
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> 
 {% endblock %}
 
 {% block title %}Edit Author{% endblock %}
 
-{% block body %}
+{% block body style="height: -webkit-fill-available"%}
 
     {% if app.user %}
         <div class="mb-3">
