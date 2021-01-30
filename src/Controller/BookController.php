@@ -15,57 +15,32 @@ use App\Entity\Book;
 class BookController extends AbstractController
 {
     /**
-     * @Route("/book", name="book_index")
+     * @Route("/book/{sort?}", name="book_index", methods={"GET"})
      */
     // INDEX --------------------------------------------------------------------
-    public function index(): Response
+    public function index( String $sort = null): Response
     {
-        // imam knygas
+        if(!$sort) {
+            $sort = ['title' => 'DESC'];
+        }
+        elseif ($sort == "id_asc") {
+            $sort = ['author_id' => 'ASC'];
+        } 
+        elseif ($sort == "title_asc") {
+            $sort = ['title' => 'ASC'];
+        }
+        // All books -------------------------------------------------------------
         $books = $this->getDoctrine()
         ->getRepository(Book::class)
-        ->findAll();
-
-        
+        ->findBy([], $sort);
 
         return $this->render('book/index.html.twig', [
             'books' => $books,
-            
         ]);
     }
-     /**
-     * @Route("/book", name="book_index")
-     */
-    // FILTER --------------------------------------------------------------------
-    // public function configureFilters(Filters $filters): Filters
-    // {
-    //     return $filters
-    //         // ->add('title')
-    //         // ->add('price')
-    //         // ->add('published')
-    //         ->add($r->request->get('book_author_id'))
-    //         ->add($r->request->get('author_id'))
-    //     ;
-    // }
+    
     /**
-     * @Route("ckeditor", name="ckeditor")
-     */
-    // CKEDITOR -------------------------------------------------------------------
-    public function ckeditor(): Response
-    {
-        $form = $this->createFormBuilder()
-        ->add('content', CKEditorType::class, [
-            'config' => [
-                'config' => 'main_configs',
-            ],]
-            )
-        ->getForm();
-
-        return $this->render('ckeditor.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-    /**
-     * @Route("/book/create", name="book_create", methods={"GET"})
+     * @Route("/book//create", name="book_create", methods={"GET"})
      */
     // CREATE -------------------------------------------------------------------
     public function create(): Response
@@ -79,8 +54,6 @@ class BookController extends AbstractController
         ->add('About', CKEditorType::class, [
             'config' => [
                 'config' => 'main_configs',
-                'cloudServices_tokenUrl' => 'https://example.com/cs-token-endpoint',
-                'cloudServices_uploadUrl' => 'https://your-organization-id.cke-cs.com/easyimage/upload/',
             ],]
             )
         ->getForm();
@@ -88,8 +61,6 @@ class BookController extends AbstractController
         return $this->render('book/create.html.twig', [
             'authors' => $authors,
             'form' => $form->createView(),
-            'autoload' => true,
-            'async'=> true,
         ]);
     }
      /**
@@ -128,11 +99,11 @@ class BookController extends AbstractController
     // EDIT --------------------------------------------------------------------
     public function edit(int $id): Response
     {
-        // ieskom to autoriaus kurio id yra perduotas
+
         $book = $this->getDoctrine()
         ->getRepository(Book::class)
         ->find($id);
-
+        
         $authors = $this->getDoctrine()
         ->getRepository(Author::class)
         ->findAll();
@@ -141,11 +112,12 @@ class BookController extends AbstractController
         ->add('About', CKEditorType::class, [
             'config' => [
                 'config' => 'main_configs',
+                'autoload' => true,
+                'async'=> true,
             ],]
             )
         ->getForm();
 
-        // atiduodam viena knyga
         return $this->render('book/edit.html.twig', [
             'book' => $book,
             'authors' => $authors,
@@ -159,11 +131,11 @@ class BookController extends AbstractController
     //  UPDATE method-----------------------------------------------------------
     public function update(Request $r, $id): Response
     {
-        // imam autoriu pagal sena id
         $book = $this->getDoctrine()
-            ->getRepository(Book::class)
-            ->find($id);
-
+        ->getRepository(Book::class)
+        ->find($id);
+        
+        // imam autoriu pagal sena id
         $author = $this->getDoctrine()
             ->getRepository(Author::class)
             ->find($r->request->get('book_author'));

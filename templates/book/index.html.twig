@@ -5,15 +5,12 @@
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> 
 {% endblock %}
 
-{# {% block header %}
-<a href="{{path('book_create')}}"> Create new book </a>
-<a href="{{path('book_update')}}"> Update a book </a>
-{% endblock %} #}
-
 {% block title %}Books List{% endblock %}
 
 
 {% block body %}
+
+
 
     {% if app.user %}
         <div class="mb-3">
@@ -26,11 +23,20 @@
     <a class="header" href="{{path('author_index')}}"> Authors </a>
     
     </header>
-
-
-    <h1>Books in Library </h1>
+    <h1 class="h1">Books in Library </h1>
 
     <h2>Books List </h2>
+
+    <div class="filter">
+    Filter by
+    <select class="select" name="sort" onchange="location = this.value;" >
+    <option value=""></option>
+    <option value="http://localhost/biblioteka/public/index.php/book/title_asc">Title ASC</option>
+    <option value="http://localhost/biblioteka/public/index.php/book/id_asc">Author ID ASC</option> 
+    <option value="http://localhost/biblioteka/public/index.php/book">Default</option> 
+    </select>
+    </div>
+
     <br>
     <div class="grid-container">
     {% for book in books %}

@@ -2,7 +2,6 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-{# <link rel="stylesheet" href="{{ asset('assets/css/extra.css') }}"> #}
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> 
 {% endblock %}
 
@@ -10,20 +9,6 @@
 
 {% block body %}
 
-
-    {# <script type="text/javascript">
-			$(document).ready(function() {
-				CKEDITOR.replace( 'editor',
-				{
-					fullPage : true,
-					uiColor : '#9AB8F3',
-					toolbar : 'MyToolbar',
-                    cloudServices_tokenUrl: 'https://example.com/cs-token-endpoint',
-                    cloudServices_uploadUrl: 'https://your-organization-id.cke-cs.com/easyimage/upload/'
-				});
-			} 
-        );
-	</script> #}
 
     {% if app.user %}
         <div class="mb-3">
@@ -53,21 +38,14 @@
             {% endfor %}
             </select>
 
-            
-            {# <form action="result.php" method="post">
-            <textarea class="editor" id="editor" name="book_about"></textarea>
-			<div id="messages"></div>
-            </form> #}
 
+            {# <textarea name="book_about"></textarea> #}
 
-            <textarea name="book_about"></textarea>
-{# 
             <div name="book_about" class="form">
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
                 {{ form_end(form) }}
-            </div> #}
-
+            </div>
             
             <br>
             <button type="submit"> Add new Book </button>

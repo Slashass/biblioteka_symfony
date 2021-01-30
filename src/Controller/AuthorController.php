@@ -80,7 +80,6 @@ class AuthorController extends AbstractController
         ->getRepository(Author::class)
         ->find($id);
 
-
         $author
             ->setName($r->request->get('author_name'))
             ->setSurname($r->request->get('author_surname'));

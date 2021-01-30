@@ -3,7 +3,6 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> 
-<link rel="stylesheet" href="{{ asset('assets/css/extra.css') }}">
 {% endblock %}
 
 {% block title %}Edit new Book{% endblock %}
@@ -34,14 +33,14 @@
             <input type="text" name="book_isbn" value="{{book.isbn}}">
             
             
-            <textarea name="book_about">{{book.about}}</textarea>
+            {# <textarea name="book_about">{{book.about}}</textarea> #}
 
 
-            {# <div name="book_about" class="form">
+            <div name="book_about" class="form">
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
                 {{ form_end(form) }}
-            </div> #}
+            </div>
 
             <br>
             <select name="book_author">
