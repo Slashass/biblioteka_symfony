@@ -38,15 +38,11 @@
             {% endfor %}
             </select>
 
+            <textarea name="book_about"></textarea>
+            <script>
+                CKEDITOR.replace('book_about');
+            </script>
 
-            {# <textarea name="book_about"></textarea> #}
-
-            <div name="book_about" class="form">
-                {{ form_start(form) }}
-                {{ form_widget(form) }}
-                {{ form_end(form) }}
-            </div>
-            
             <br>
             <button type="submit"> Add new Book </button>
         </div>
