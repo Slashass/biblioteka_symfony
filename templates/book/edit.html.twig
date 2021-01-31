@@ -25,14 +25,14 @@
 
     <form action="{{path('book_update', {id: book.id})}}" method="POST">
         <div class="edit_book">
-            <p class="title"> Title: </p>
+            <p class="title"> Title </p>
             <input type="text" name="book_title" value="{{book.title}}">
-            <p class="pages">Pages: </p>
+            <p class="pages">Pages </p>
             <input type="text" name="book_pages" value="{{book.pages}}">
-            <p class="isbn">ISBN: </p>
+            <p class="isbn">ISBN </p>
             <input type="text" name="book_isbn" value="{{book.isbn}}">
             
-            
+            <p class="about">About </p>
             <textarea name="book_about">{{book.about}}</textarea>
             <script>
                 CKEDITOR.replace('book_about');
@@ -51,8 +51,11 @@
             {% endfor %}
             </select>
             <br>
+
             <button type="submit"> Edit Book </button>
+
         </div>
+
     </form>
 
 {% endblock %}

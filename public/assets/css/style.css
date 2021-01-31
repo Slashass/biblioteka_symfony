@@ -53,10 +53,16 @@ h1 {
     margin-bottom: 10px;
 }
 .header:hover {
-    color: red;
+    color: lightcoral;
+}
+
+.mb-3 {
+    position: absolute;
+    margin-top: 10px;
 }
 
 .edit {
+    display: grid;
     text-decoration: none;
     padding: 20px;
     font-weight: bold;
@@ -105,7 +111,7 @@ h1 {
 .name, .surname, .pages, .isbn, .title, .about {
     font-size: 35px;
     font-weight: bold;
-    color: lightslategray;
+    color: lightcoral;
 }
 .book, .author, .about2 {
     font-size: 25px;
@@ -115,6 +121,17 @@ h1 {
 span{ 
     color: lightcoral;
     font-size: 30px;
+}
+
+.logout {
+    text-decoration: none;
+    display: inline;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.logout:hover{
+    color: lightcoral;
 }
 
 button {
@@ -129,6 +146,11 @@ button {
 button:hover{
     color: red;
     cursor: pointer;
+}
+
+.btn-holder {
+    justify-content: flex-end;
+    display: flex;
 }
 
 .grid-container {

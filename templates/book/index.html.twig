@@ -14,7 +14,7 @@
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            You are logged in as {{ app.user.username }} <a href="{{ path('app_logout') }}"><p class="logout">Logout</p></a>
         </div>
     {% endif %}
 
@@ -52,7 +52,9 @@
         <br>
         <form action="{{path('book_delete', {id: book.id})}}" method="POST">
         <a class="edit" href="{{path('book_edit', {id: book.id})}}">EDIT</a> 
+         <div class="button_holder">
         <button type="submit">DELETE</button>
+        </div>
         </form>
     </div>    
     {% endfor %}

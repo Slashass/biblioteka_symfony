@@ -25,11 +25,11 @@
 
     <form action="{{path('book_store')}}" method="POST">
     <div class="create_book container">    
-            <p class="title"> Title: </p>
+            <p class="title"> Title </p>
             <input type="text" name="book_title">
-            <p class="pages"> Pages: </p>
+            <p class="pages"> Pages </p>
             <input type="text" name="book_pages">
-            <p class="isbn">ISBN: </p>
+            <p class="isbn">ISBN </p>
             <input type="text" name="book_isbn">
             <p class="about">Author </p>
             <select name="book_author_id">
@@ -38,8 +38,9 @@
             {% endfor %}
             </select>
 
+            <p class="about">About </p>
             <textarea name="book_about"></textarea>
-            <script>
+            <script> 
                 CKEDITOR.replace('book_about');
             </script>
 
