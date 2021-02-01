@@ -205,7 +205,7 @@ img {
     .name, .surname, .pages, .isbn, .title, .about {
         font-size: 20px;
         font-weight: bold;
-        color: lightslategray;
+        color: lightcoral;
     }
     .book, .author, .about2 {
         font-size: 20px;
@@ -224,6 +224,10 @@ img {
     img {
         height: 150px;
         width: 100px;
+    }
+    .edit_book {
+        height: 50%;
+        width: 60%;
     }
 }
 
@@ -257,12 +261,21 @@ img {
         width:  70%;
         height: 70%;
     }
+    .edit_book {
+        height: 70%;
+        width: 70%;
+    }
+   
 }
 
 @media only screen and (max-width: 700px) {
     .login_index, .register_index {
         width:  98%;
         height: 100%;
+    }
+    .edit_book {
+        height: 70%;
+        width: 90%;
     }
 
 }
