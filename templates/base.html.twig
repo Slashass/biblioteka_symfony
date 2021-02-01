@@ -13,6 +13,9 @@
         
     </head>
     <body>
+        {% if errors is defined and errors|length > 0 %}
+        {% include 'errors/validation.html.twig'%}
+        {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>

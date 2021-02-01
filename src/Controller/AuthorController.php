@@ -8,44 +8,75 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class AuthorController extends AbstractController
 {
     /**
      * @Route("/author", name="author_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Request $r): Response
     {
-        // pasiemam visus autorius
+        // Take
         $authors = $this->getDoctrine()
-            ->getRepository(Author::class)
-            ->findAll();
+            ->getRepository(Author::class);
+
+        // Sort 
+        if($r->query->get('sort') == 'name_asc') {
+            $authors = $authors->findBy([],['name' => 'ASC']);
+        } 
+        elseif ($r->query->get('sort') == 'name_desc'){
+            $authors = $authors->findBy([],['name' => 'DESC']);
+        }
+        elseif ($r->query->get('sort') == 'surname_asc'){
+            $authors = $authors->findBy([],['surname' => 'DESC']);
+        }
+        elseif ($r->query->get('sort') == 'surname_desc'){
+            $authors = $authors->findBy([],['surname' => 'DESC']);
+        }
+        else {
+            $authors = $authors->findAll();
+        }    
         
-        // atiduodam visus autorius
+        // Give
         return $this->render('author/index.html.twig', [
             'authors' => $authors,
+            'sortBy'=> $r->query->get('sort') ?? 'defaut'
         ]);
     }
     /**
      * @Route("/author/create", name="author_create", methods={"GET"})
      */
-    public function create(): Response
+    public function create(Request $r): Response
     {
         return $this->render('author/create.html.twig', [
+            'errors' => $r->getSession()->getFlashBag()->get('errors', [])
         ]);
     }
     /**
      * @Route("/author/store", name="author_store", methods={"POST"})
      */
     // naudojam request, kad gaut duomenis is POST metodo
-    public function store(Request $r): Response
+    public function store(Request $r, ValidatorInterface $validator): Response
     {
         // creating new author 
         $author = new Author;
+        
         $author
             ->setName($r->request->get('author_name'))
             ->setSurname($r->request->get('author_surname'));
+
+
+        // Error validation 
+        $errors = $validator->validate($author);
         
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                $r->getSession()->getFlashBag()->add('errors', $error->getMessage());
+            }
+            return $this->redirectToRoute('author_create');
+        }
+
         // doctrine tarpininkas tarp db ir entity
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($author);
@@ -104,7 +135,7 @@ class AuthorController extends AbstractController
         ->find($id);
 
         if ($author->getBooks()->count() > 0) {
-            return new Response('Trinti negalima nes turi knygu');
+            return new Response('Cannot delete, author own a book');
         }
 
         // doctrine tarpininkas tarp db ir entity

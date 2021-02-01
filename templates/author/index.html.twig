@@ -20,24 +20,37 @@
     <a class="header" href="{{path('author_create')}}"> Create new author </a>
     </header>
 
-    <h1>Authors in Library </h1>
+    
+    <div class="sort_author">
+        <form action="{{path('author_index')}}"  method="GET">
+        Sort by 
+                <select name="sort" >
+                    <option value="default">Default</option>
+                    <option value="name_asc" {% if sortBy == 'name_asc' %} selected {% endif %}>Name ASC</option>
+                    <option value="name_desc" {% if sortBy == 'name_desc' %} selected {% endif %}>Name DESC</option>
+                    <option value="surname_asc" {% if sortBy == 'surname_asc' %} selected {% endif %}>Surname ASC</option>
+                    <option value="surnam_desc" {% if sortBy == 'surname_desc' %} selected {% endif %}>Surname DESC</option>
+                </select>
+            <button class="sort" type="submit">Sort</button>
+        </form>
+    </div>
+
+<h1 class="h1">Authors in Library </h1>
 
     <h2>List </h2>
+
     <div class="grid-container">
     {% for author in authors %}
         <div class="authors_border">
-        <div class="authors">{{author.name}} {{author.surname}} </div> 
-        <form action="{{path('author_delete', {id: author.id})}}" method="POST">
-        <div class="parasytos_knygos"> <span>Parasytos knygos: </span> <br> {% for book in author.books %}
-            {{book.title}}
-        {% endfor %} 
-        <br>
-        </div>
-        <br>
-        <br>
-        <a class="edit" href="{{path('author_edit', {id: author.id})}}">EDIT</a> 
-        <button type="submit">DELETE</button>
-        </form>
+            <div class="authors">{{author.name}} {{author.surname}} </div> 
+                <form action="{{path('author_delete', {id: author.id})}}" method="POST">
+            <div class="parasytos_knygos"> <span>Parasytos knygos: </span> <br> {% for book in author.books %}
+                <h3> {{book.title}} </h3>
+    {% endfor %} 
+            </div>
+            <a class="edit" href="{{path('author_edit', {id: author.id})}}">EDIT</a> 
+            <button type="submit">DELETE</button>
+            </form>
         </div>
     {% endfor %}
     </div>
