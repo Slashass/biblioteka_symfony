@@ -9,6 +9,7 @@ body {
     word-wrap: break-word;
     min-width: 600px;
     overflow: auto;
+    
 }
 
 #registration_form_plainPassword, #registration_form_email {
@@ -45,6 +46,7 @@ button, .edit{
 button:hover{
     color: red;
     cursor: pointer;
+    background-color: lightsteelblue;
 }
 
 img {
@@ -113,6 +115,7 @@ img {
 }
 .edit:hover {
     color: lightgreen;
+    background-color: lightsteelblue;
 }
 .edit_delete {
     display: grid;
@@ -204,6 +207,7 @@ img {
     margin-left: 80px;
     margin-right: 80px;
     overflow: hidden;
+    filter: drop-shadow(2px 4px 6px black);
   }
 /*
 MEDIA --------------------------------------------------------------------

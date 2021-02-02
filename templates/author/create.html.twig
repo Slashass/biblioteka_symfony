@@ -24,15 +24,16 @@
 <h1> Create new Author </h1>
 
     <form action="{{path('author_store')}}" method="POST">
-    <div class="create_author">
-        <p class="name">Name </p>  
-        <input type="text" name="author_name">
-        <br>
-        <p class="surname">Surname </p> 
-        <input type="text" name="author_surname"> 
-        <br>
-        <button type="submit"> Add new Author </button>
-    </div>
+        <div class="create_author">
+            <p class="name">Name </p>  
+            <input type="text" name="author_name" value="{{author_name}}">
+            <br>
+            <p class="surname">Surname </p> 
+            <input type="text" name="author_surname" value="{{author_surname}}"> 
+            <br>
+            <button type="submit"> Add new Author </button>
+        </div>
+        <input type="hidden" name="token" value="{{ csrf_token('create_author') }}"/>
     </form>
 
 {% endblock %}
