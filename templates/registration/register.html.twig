@@ -18,15 +18,21 @@
 
     <div class="form">
         {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.email, {
+                label: 'Email'
+            }) }}
             {{ form_row(registrationForm.plainPassword, {
                 label: 'Password'
             }) }}
         {{ form_end(registrationForm) }}
     </div>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}">
+           
     Already have an account? 
     <a href="{{path('app_login')}}"> Login </a>
     <br>
-    <button type="submit" class="btn">Register</button>
+    <button type="submit" class="btn btn-lg btn-primary">Register</button>
 </div>
 {% endblock %}

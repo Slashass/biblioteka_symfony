@@ -25,9 +25,6 @@ class RegistrationFormType extends AbstractType
             'constraints' => [
                 new Email([
                 'message' => 'Please enter a valid email',
-                ]),
-                new NotBlank([
-                'message' => 'Please enter email address',
                 ]),]
         ])
             ->add('plainPassword', PasswordType::class, [

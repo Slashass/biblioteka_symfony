@@ -10,13 +10,6 @@
 
 {% block body %}
 
-    {# <script>
-
-    function showhide() {
-        const div = document.getElementById("hide");
-        div.classList.toggle('hidden');
-    }
-    </script> #}
 
     {% if app.user %}
         <div class="mb-3">
@@ -29,21 +22,37 @@
     <a class="header" href="{{path('author_index')}}"> Authors </a>
 </header>
     
+
 <header class="second_header">
     <div class="sort_author">
-     <form action="{{path('book_index')}}"  method="GET">
-        Filter authors 
-        <select name="author_id">
-                <option value="all">View all</option>
-                {% for author in authors %}
-                <option value="{{author.id}}" 
-                {% if authorId == author.id %} selected {% endif %}>
-                {{author.name}} {{author.surname}} 
-                </option>
-                {% endfor %}
-        </select>
-        <button class="sort" type="submit">Filter</button>
-    </form>
+        <form action="{{path('book_index')}}"  method="GET">
+            Filter authors 
+            <select name="author_id">
+                    <option value="all" >View all</option>
+                    {% for author in authors %}
+                    <option value="{{author.id}}" 
+                    {# {% if authorId == author.id %} selected {% endif %} #}
+                    >
+                    {{author.name}} {{author.surname}} 
+                    </option>
+                    {% endfor %}
+            </select>
+            <button class="sort" type="submit">Filter</button>
+        </form>
+        <form action="{{path('book_index')}}"  method="GET">
+            Filter books
+            <select name="title">     
+                    <option value="all">View all</option>   
+                    {% for book in books %}
+                    <option value="{{book.title}}" 
+                    {# {% if bookTitle == book.title %} selected {% endif %} #}
+                    >
+                    {{book.title}} 
+                    </option>
+                    {% endfor %}
+            </select>
+            <button class="sort" type="submit">Filter</button>
+        </form>
     </div>
 
     <div class="sort_book">
@@ -53,6 +62,7 @@
                     <option value="default">Default</option>
                     <option value="book_asc" {% if sortBy == 'book_asc' %} selected {% endif %}>Book Title ASC</option>
                     <option value="book_desc" {% if sortBy == 'book_desc' %} selected {% endif %}>Book Title DESC</option>
+                    <option value="id_asc" {% if sortBy == 'id_asc' %} selected {% endif %}>Author ID ASC</option>
                 </select>
             <button class="sort" type="submit">Sort</button>
         </form>
@@ -68,17 +78,13 @@
             <img src="{{asset('assets/foto/images.jpg')}}" alt="book">
             <p class="book"><span>Book:</span> {{book.title}} </p>
             <p class="author"><span>Author:</span>  {{book.author.name}} {{book.author.surname}}</p>
-            <div id="hide" class="hidden">
                 <p class="about2"><span>About:</span> {{book.about}} </p>
-                <br>
-                <form action="{{path('book_delete', {id: book.id})}}" method="POST">
+            <form action="{{path('book_delete', {id: book.id})}}" method="POST">
+                <div class="edit_delete">
                 <a class="edit" href="{{path('book_edit', {id: book.id})}}">EDIT</a> 
-                <div class="button_holder">
-                <button type="submit">DELETE</button>
+                    <button type="submit">DELETE</button>
                 </div>
-                </form>
-            </div>
-            {# <button onclick="showhide()">Click for more </button> #}
+            </form>
         </div>    
     {% endfor %}
     </div>

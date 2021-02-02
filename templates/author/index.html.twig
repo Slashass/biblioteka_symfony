@@ -19,8 +19,7 @@
     <a class="header" href="{{path('book_index')}}"> Books </a> |
     <a class="header" href="{{path('author_create')}}"> Create new author </a>
     </header>
-
-    
+ 
     <div class="sort_author">
         <form action="{{path('author_index')}}"  method="GET">
         Sort by 
@@ -29,7 +28,7 @@
                     <option value="name_asc" {% if sortBy == 'name_asc' %} selected {% endif %}>Name ASC</option>
                     <option value="name_desc" {% if sortBy == 'name_desc' %} selected {% endif %}>Name DESC</option>
                     <option value="surname_asc" {% if sortBy == 'surname_asc' %} selected {% endif %}>Surname ASC</option>
-                    <option value="surnam_desc" {% if sortBy == 'surname_desc' %} selected {% endif %}>Surname DESC</option>
+                    <option value="surname_desc" {% if sortBy == 'surname_desc' %} selected {% endif %}>Surname DESC</option>
                 </select>
             <button class="sort" type="submit">Sort</button>
         </form>
@@ -48,9 +47,11 @@
                 <h3> {{book.title}} </h3>
     {% endfor %} 
             </div>
-            <a class="edit" href="{{path('author_edit', {id: author.id})}}">EDIT</a> 
-            <button type="submit">DELETE</button>
-            </form>
+            <div class="edit_delete">
+                <a class="edit" href="{{path('author_edit', {id: author.id})}}">EDIT</a> 
+                <button type="submit">DELETE</button>
+                </form>
+            </div>
         </div>
     {% endfor %}
     </div>

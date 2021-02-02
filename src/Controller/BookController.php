@@ -2,14 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Form\Extension\Core\FileType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use App\Entity\Author;
 use App\Entity\Book;
 
@@ -26,24 +22,32 @@ class BookController extends AbstractController
         ->getRepository(Author::class)
         ->findAll();
         
-        // All books -------------------------------------------------------------
+        
+        // All books ------------------------------------------------------------
         $books = $this->getDoctrine()
         ->getRepository(Book::class);
 
+        // Filter
+        if($r->query->get('author_id') == 'all' || $r->query->get('title') == 'all') {
+            $books = $books->findAll();
+        }
+        elseif (null !== $r->query->get('title')) {
+            $books = $books->findBy(['title' => $r->query->get('title')]);
+        }
+        elseif (null !== $r->query->get('author_id')) {
+            $books = $books->findBy(['author_id' => $r->query->get('author_id')],
+            ['title' => 'ASC']);
+        }
+
         // Sort
-        if($r->query->get('sort') == 'book_asc') {
+        elseif($r->query->get('sort') == 'book_asc') {
             $books = $books->findBy([],['title' => 'ASC']);
         } 
         elseif ($r->query->get('sort') == 'book_desc'){
             $books = $books->findBy([],['title' => 'DESC']);
         }
-       
-        // Filter
-        elseif($r->query->get('author_id') == 'all') {
-            $books = $books->findAll();
-        }
-        elseif (null !== $r->query->get('author_id')) {
-            $books = $books->findBy(['author_id' => $r->query->get('author_id')]);
+        elseif($r->query->get('sort') == 'id_asc') {
+            $books = $books->findBy([],['author_id' => 'ASC']);
         }
         else {
             $books = $books->findAll();
@@ -53,7 +57,8 @@ class BookController extends AbstractController
             'books' => $books,
             'authors' => $authors,
             'sortBy' =>  $r->query->get('sort') ?? 'defaut',
-            'authorId' => $r->query->get('author_id') ?? 0
+            'authorId' => $r->query->get('author_id') ?? 0,
+            'bookTitle' => $r->query->get('title') ?? 0,
         ]);
     }
     
