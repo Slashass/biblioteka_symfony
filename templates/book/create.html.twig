@@ -41,13 +41,17 @@
 
             <p class="about"> About </p>
             <textarea name="book_about"></textarea>
-            <script> 
-                CKEDITOR.replace('book_about');
-            </script>
 
             <br>
             <button type="submit"> Add new Book </button>
         </div>
     </form>
+            <script> 
+                CKEDITOR.replace('book_about');
+            </script>
+
+     {# <script>
+        $('#summernote').summernote();
+    </script> #}
 
 {% endblock %}
